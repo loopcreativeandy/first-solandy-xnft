@@ -6,9 +6,10 @@ import tw from "twrnc";
 import { Screen } from "../components/Screen";
 //import { useConnection, usePublicKey, usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
 import { PublicKey, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
-import { useSolanaConnection, usePublicKeys, Button, View , Image} from "react-xnft";
+import { useSolanaConnection, usePublicKeys, } from "react-xnft";
 import { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
+import { Button, View , Image } from "react-native";
 
 type CnftInfo = {
   title: string,
@@ -117,14 +118,10 @@ export function MintScreen() {
       </Text>
       
       { cnftdata ?
-      <View>
-        <Image src={cnftdata.image} style={{
-                    borderRadius: "6px",
-                    width: "157.5px",
-                  }}>
-        </Image>
-        <Text style={tw`mb-4`}>
-          Title: {cnftdata.title} 
+      <View style={tw`w-full h-3/4`}>
+        <Image source={{ uri: cnftdata.image }} style={tw`w-fit h-4/5 aspect-auto`} />
+        <Text style={tw`mb-4 text-xl font-semibold text-center`}>
+          {cnftdata.title} 
         </Text>
       </View>
        : 
@@ -132,9 +129,9 @@ export function MintScreen() {
        {loading? "loading..." : "something went wrong!"}
       </Text>
       }
-      <Button onClick={onButtonClick}>
-        Click me!
-      </Button>
+      <button onClick={onButtonClick}>
+        MINT
+      </button>
       { signature?
       <Text style={tw`mb-4`}>
         Signature: {signature} 
