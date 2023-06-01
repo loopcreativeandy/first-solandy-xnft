@@ -9,27 +9,38 @@ import { useFonts, Inter_900Black } from "@expo-google-fonts/dev";
 import { ExamplesScreens } from "./screens/ExamplesScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { TokenListNavigator } from "./screens/TokenNavigator";
+import { AndyScreen } from "./screens/AndyScreen";
 
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Andys first xNFT"
       screenOptions={{
         tabBarActiveTintColor: "#e91e63",
       }}
     >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
+    <Tab.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{
+        tabBarLabel: "Home",
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="account" color={color} size={size} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Andys first xNFT"
+      component={AndyScreen}
+      options={{
+        tabBarLabel: "Andy",
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="key" color={color} size={size} />
+        ),
+      }}
+    />
       <Tab.Screen
         name="List"
         component={TokenListNavigator}
