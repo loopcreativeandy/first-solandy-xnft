@@ -51,11 +51,8 @@ function useCnftData() {
 export function MintScreen() {
 
   const { cnftdata, loading } = useCnftData();
-  const [blockhash, setBlockhash] = useState("");
   const [signature, setSignature] = useState("");
   const [pk, setPk] = useState<PublicKey>();
-
-  const receiver = new PublicKey("AndyaySnmjXM9hxht24vytt3SJdsW6ZfXL5NEgbTMfEU");
 
   const pks = usePublicKeys() as unknown as {solana: string};
   useEffect(() => {
@@ -67,9 +64,6 @@ export function MintScreen() {
   const connection = useSolanaConnection();
 
   const onButtonClick = async () => {
-    
-    const bh = (await connection.getLatestBlockhash()).blockhash;
-    setBlockhash(bh);
 
     if(!pk){
       console.log("NO PUBKEY!");
@@ -80,7 +74,7 @@ export function MintScreen() {
       return;
     }
 
-    const tx = await getSolanaPayTransaction(cnftdata.url, pk, true);
+    const tx = await getSolanaPayTransaction(cnftdata.url, pk, false);
 
     if(!tx){
       console.log("could not get transaction!")
